@@ -12,8 +12,8 @@ let currentDifficulty = null;
 let animationFrameId = null;
 let selectedButton = null;
 
-const enemyEmoji = '🦍';
-const playerEmoji = '🧔‍♂️';
+const enemyEmoji = '🪰';
+const playerEmoji = '🐸';
 
 function initGame() {
   player = {
