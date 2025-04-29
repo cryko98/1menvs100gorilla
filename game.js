@@ -8,8 +8,12 @@ let isPaused = false;
 let gameStarted = false;
 let totalEnemies = 100;
 let enemySpeed = 0.3;
-let currentDifficulty = 'easy';
-let animationFrameId;
+let currentDifficulty = null;
+let animationFrameId = null;
+let selectedButton = null;
+
+const enemyEmoji = '🦍';
+const playerEmoji = '🧔‍♂️';
 
 function initGame() {
   player = {
@@ -23,7 +27,7 @@ function initGame() {
   enemies = [];
   bullets = [];
 
-  let enemyCount = totalEnemies;
+  let enemyCount = 100;
   if (enemySpeed === 0.3) enemyCount = 80;
   else if (enemySpeed === 0.6) enemyCount = 90;
   else if (enemySpeed === 0.9) enemyCount = 100;
@@ -41,28 +45,44 @@ function initGame() {
   document.getElementById('enemyCount').innerText = enemies.length;
 }
 
-function setDifficulty(level) {
-  cancelAnimationFrame(animationFrameId);
+function selectDifficulty(button, level) {
+  if (selectedButton) {
+    selectedButton.classList.remove('selected');
+  }
 
-  if (level === 'easy') enemySpeed = 0.3;
-  else if (level === 'medium') enemySpeed = 0.6;
-  else if (level === 'hard') enemySpeed = 0.9;
-
+  selectedButton = button;
+  selectedButton.classList.add('selected');
   currentDifficulty = level;
+  document.getElementById('start-button').disabled = false;
+}
+
+function startGame() {
+  if (!currentDifficulty) return;
+
+  cancelAnimationFrame(animationFrameId); // ← ezt adtuk hozzá
+
+  if (currentDifficulty === 'easy') {
+    enemySpeed = 0.3;
+  } else if (currentDifficulty === 'medium') {
+    enemySpeed = 0.6;
+  } else if (currentDifficulty === 'hard') {
+    enemySpeed = 0.9;
+  }
+
   initGame();
   gameStarted = true;
+  isPaused = false;
   animate();
 }
 
 function animate() {
   if (isPaused || !gameStarted) return;
+
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Draw player as emoji
-  ctx.font = "28px Arial";
-  ctx.textAlign = "left";
-  ctx.textBaseline = "top";
-  ctx.fillText("👨", player.x, player.y);
+  // Draw player
+  ctx.font = "30px Arial";
+  ctx.fillText(playerEmoji, player.x, player.y + 30);
 
   // Draw bullets
   ctx.fillStyle = "lime";
@@ -73,13 +93,13 @@ function animate() {
 
   bullets = bullets.filter(bullet => bullet.y > 0);
 
-  // Draw enemies as emoji
-  ctx.font = "26px Arial";
+  // Draw enemies
+  ctx.font = "30px Arial";
   enemies.forEach(enemy => {
-    ctx.fillText("🦍", enemy.x, enemy.y);
+    ctx.fillText(enemyEmoji, enemy.x, enemy.y + 30);
     enemy.y += enemy.speed;
 
-    if (enemy.y + 30 > canvas.height) {
+    if (enemy.y + enemy.height > canvas.height) {
       alert("You Lose!");
       gameStarted = false;
       cancelAnimationFrame(animationFrameId);
@@ -90,12 +110,10 @@ function animate() {
   // Collision detection
   bullets.forEach((bullet, bulletIndex) => {
     enemies.forEach((enemy, enemyIndex) => {
-      if (
-        bullet.x < enemy.x + 30 &&
-        bullet.x + 5 > enemy.x &&
-        bullet.y < enemy.y + 30 &&
-        bullet.y + 25 > enemy.y
-      ) {
+      if (bullet.x < enemy.x + enemy.width &&
+          bullet.x + 5 > enemy.x &&
+          bullet.y < enemy.y + enemy.height &&
+          bullet.y + 25 > enemy.y) {
         enemies.splice(enemyIndex, 1);
         bullets.splice(bulletIndex, 1);
         document.getElementById('enemyCount').innerText = enemies.length;
@@ -132,5 +150,11 @@ function pauseGame() {
 }
 
 function restartGame() {
-  setDifficulty(currentDifficulty);
+  if (currentDifficulty) {
+    cancelAnimationFrame(animationFrameId); // ← biztos ami biztos
+    initGame();
+    gameStarted = true;
+    isPaused = false;
+    animate();
+  }
 }
