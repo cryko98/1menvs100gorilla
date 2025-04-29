@@ -5,15 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>1 Chad vs 100 Jeet</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div id="container">
   <div id="left-panel">
     <h2>Difficulty</h2>
-    <button onclick="setDifficulty('easy')">Easy</button>
-    <button onclick="setDifficulty('medium')">Medium</button>
-    <button onclick="setDifficulty('hard')">Hard</button>
+    <div id="difficulty-buttons">
+      <button onclick="selectDifficulty(this, 'easy')">Easy</button>
+      <button onclick="selectDifficulty(this, 'medium')">Medium</button>
+      <button onclick="selectDifficulty(this, 'hard')">Hard</button>
+    </div>
+    <button id="start-button" onclick="startGame()" disabled>Start</button>
+    
     <h2>Controls</h2>
     <button onclick="pauseGame()">Pause</button>
     <button onclick="restartGame()">Restart</button>
@@ -26,13 +31,16 @@
     <div id="ca-box">
       CA: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     </div>
+
+    <div id="game-title">
+      1 MEN VS 100 GORILLA
+    </div>
   </div>
 
   <div id="right-panel">
     <h2>Description</h2>
     <p>
-      Our fearless character stands strong against 100 enemies trying to suppress the project.  
-      With unwavering determination, he fights back and aims for a glorious victory in this crypto war!
+      "1 Men vs 100 Gorilla" is a fast-paced, pixel-style survival game where a lone man faces overwhelming odds — battling against 100 relentless gorillas. The objective is simple yet intense: survive the assault and defeat all enemies.
     </p>
   </div>
 </div>
