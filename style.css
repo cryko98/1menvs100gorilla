@@ -35,7 +35,7 @@ body {
   margin: 10px 0;
   padding: 10px;
   width: 100%;
-  background-color: #4CAF50; /* Zöld crypto gombszín */
+  background-color: #4CAF50;
   border: none;
   border-radius: 8px;
   color: white;
@@ -47,6 +47,20 @@ body {
   background-color: #45a049;
 }
 
+#start-button {
+  background-color: #2196F3;
+}
+
+#start-button:disabled {
+  background-color: #888;
+  cursor: not-allowed;
+}
+
+#difficulty-buttons button.selected {
+  border: 2px solid #FFD700;
+  box-shadow: 0 0 10px #FFD700;
+}
+
 #gameCanvas {
   background-color: rgba(0, 0, 0, 0.7);
   border: 5px solid #333;
@@ -54,7 +68,7 @@ body {
 }
 
 #ca-box {
-  background-color: rgba(76, 175, 80, 0.8); /* Világos zöld háttér */
+  background-color: rgba(76, 175, 80, 0.8);
   color: white;
   font-weight: bold;
   font-size: 1.1em;
@@ -65,6 +79,16 @@ body {
   width: 100%;
   box-sizing: border-box;
   text-shadow: 1px 1px 3px #000;
+}
+
+#game-title {
+  margin-top: 10px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 18px;
+  color: #FFD700;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px #000, 1px 1px 2px #000;
+  text-align: center;
 }
 
 #right-panel p {
