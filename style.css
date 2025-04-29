@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: url('https://png.pngtree.com/background/20250105/original/pngtree-destroyed-post-apocalyptic-city-3d-render-picture-image_16151616.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+}
+
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+#left-panel, #right-panel {
+  width: 220px;
+  margin: 10px;
+  background-color: rgba(30, 30, 30, 0.85);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #000;
+}
+
+#middle-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+#left-panel button {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  background-color: #4CAF50; /* Zöld crypto gombszín */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#left-panel button:hover {
+  background-color: #45a049;
+}
+
+#gameCanvas {
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 5px solid #333;
+  border-radius: 15px;
+}
+
+#ca-box {
+  background-color: rgba(76, 175, 80, 0.8); /* Világos zöld háttér */
+  color: white;
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 15px 25px;
+  margin-top: 15px;
+  border-radius: 10px;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  text-shadow: 1px 1px 3px #000;
+}
+
+#right-panel p {
+  margin-top: 10px;
+  font-size: 1em;
+  line-height: 1.4em;
+  text-align: left;
+}
