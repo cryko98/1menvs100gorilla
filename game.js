@@ -12,8 +12,12 @@ let currentDifficulty = null;
 let animationFrameId = null;
 let selectedButton = null;
 
-const enemyEmoji = '🪰';
-const playerEmoji = '🐸';
+// KÉPEK BEÁLLÍTÁSA
+const enemyImage = new Image();
+enemyImage.src = 'https://upload.wikimedia.org/wikipedia/en/7/73/Trollface.png';
+
+const playerImage = new Image();
+playerImage.src = 'https://imgproxy.attic.sh/unsafe/rs:fit:768:768:1:1/t:1:FF00FF:false:false/pngo:false:true:256/aHR0cHM6Ly9hdHRp/Yy5zaC91cHAxODJh/aWtpeHAzOGp4dmRi/bjJwNnpodWow.png';
 
 function initGame() {
   player = {
@@ -59,7 +63,7 @@ function selectDifficulty(button, level) {
 function startGame() {
   if (!currentDifficulty) return;
 
-  cancelAnimationFrame(animationFrameId); // ← ezt adtuk hozzá
+  cancelAnimationFrame(animationFrameId);
 
   if (currentDifficulty === 'easy') {
     enemySpeed = 0.3;
@@ -80,11 +84,10 @@ function animate() {
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Draw player
-  ctx.font = "30px Arial";
-  ctx.fillText(playerEmoji, player.x, player.y + 30);
+  // Játékos kirajzolása
+  ctx.drawImage(playerImage, player.x, player.y, player.width, player.height);
 
-  // Draw bullets
+  // Lövedékek kirajzolása
   ctx.fillStyle = "lime";
   bullets.forEach(bullet => {
     ctx.fillRect(bullet.x, bullet.y, 5, 25);
@@ -93,10 +96,9 @@ function animate() {
 
   bullets = bullets.filter(bullet => bullet.y > 0);
 
-  // Draw enemies
-  ctx.font = "30px Arial";
+  // Ellenségek kirajzolása
   enemies.forEach(enemy => {
-    ctx.fillText(enemyEmoji, enemy.x, enemy.y + 30);
+    ctx.drawImage(enemyImage, enemy.x, enemy.y, enemy.width, enemy.height);
     enemy.y += enemy.speed;
 
     if (enemy.y + enemy.height > canvas.height) {
@@ -107,7 +109,7 @@ function animate() {
     }
   });
 
-  // Collision detection
+  // Ütközés detektálás
   bullets.forEach((bullet, bulletIndex) => {
     enemies.forEach((enemy, enemyIndex) => {
       if (bullet.x < enemy.x + enemy.width &&
@@ -151,7 +153,7 @@ function pauseGame() {
 
 function restartGame() {
   if (currentDifficulty) {
-    cancelAnimationFrame(animationFrameId); // ← biztos ami biztos
+    cancelAnimationFrame(animationFrameId);
     initGame();
     gameStarted = true;
     isPaused = false;
