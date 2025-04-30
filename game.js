@@ -17,7 +17,7 @@ const enemyImage = new Image();
 enemyImage.src = 'https://upload.wikimedia.org/wikipedia/en/7/73/Trollface.png';
 
 const playerImage = new Image();
-playerImage.src = 'https://imgproxy.attic.sh/unsafe/rs:fit:768:768:1:1/t:1:FF00FF:false:false/pngo:false:true:256/aHR0cHM6Ly9hdHRp/Yy5zaC91cHAxODJh/aWtpeHAzOGp4dmRi/bjJwNnpodWow.png';
+playerImage.src = 'https://emojis.slackmojis.com/emojis/images/1643514566/5641/surprised-pikachu.png?1643514566';
 
 function initGame() {
   player = {
