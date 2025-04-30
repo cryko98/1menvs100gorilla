@@ -87,10 +87,11 @@ function animate() {
   // Játékos kirajzolása
   ctx.drawImage(playerImage, player.x, player.y, player.width, player.height);
 
-  // Lövedékek kirajzolása
-  ctx.fillStyle = "lime";
+  // Lövedékek kirajzolása ⚡️
+  ctx.font = "24px Arial";
+  ctx.textAlign = "center";
   bullets.forEach(bullet => {
-    ctx.fillRect(bullet.x, bullet.y, 5, 25);
+    ctx.fillText("⚡️", bullet.x, bullet.y);
     bullet.y -= 8;
   });
 
@@ -113,9 +114,9 @@ function animate() {
   bullets.forEach((bullet, bulletIndex) => {
     enemies.forEach((enemy, enemyIndex) => {
       if (bullet.x < enemy.x + enemy.width &&
-          bullet.x + 5 > enemy.x &&
+          bullet.x + 10 > enemy.x &&
           bullet.y < enemy.y + enemy.height &&
-          bullet.y + 25 > enemy.y) {
+          bullet.y + 24 > enemy.y) {
         enemies.splice(enemyIndex, 1);
         bullets.splice(bulletIndex, 1);
         document.getElementById('enemyCount').innerText = enemies.length;
@@ -140,7 +141,7 @@ document.addEventListener('mousemove', function (e) {
 document.addEventListener('click', function () {
   if (gameStarted && !isPaused) {
     bullets.push({
-      x: player.x + player.width / 2 - 2.5,
+      x: player.x + player.width / 2,
       y: player.y,
     });
   }
