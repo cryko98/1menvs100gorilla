@@ -14,7 +14,7 @@ let selectedButton = null;
 
 // KÉPEK BEÁLLÍTÁSA
 const enemyImage = new Image();
-enemyImage.src = 'https://upload.wikimedia.org/wikipedia/en/7/73/Trollface.png';
+enemyImage.src = 'https://cdn3.emoji.gg/emojis/4330_meowth.png';
 
 const playerImage = new Image();
 playerImage.src = 'https://emojis.slackmojis.com/emojis/images/1643514566/5641/surprised-pikachu.png?1643514566';
